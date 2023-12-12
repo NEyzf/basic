@@ -1,14 +1,7 @@
-FROM monica-cn-beijing.cr.volces.com/monica/client:v1
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY /target/basic-1.0-SNAPSHOT.jar /app
 
-ENV WORKDIR /app
-WORKDIR "$WORKDIR"
-
-COPY basic/demo-with-nacos.jar "$WORKDIR"/
-COPY basic/demo-with-nacos2.x.jar "$WORKDIR"/
-COPY basic/demo-with-nacos2.x.jar "$WORKDIR"/
-COPY basic/demo-with-nacos-zj.jar "$WORKDIR"/
-COPY basic/demo-with-tomcat.war /opt/tomcat/webapps/
-
-
-CMD ["bash"]
-
+EXPOSE 20001
+ENTRYPOINT ["sh", "-c"]
+CMD ["java -jar /app/basic-1.0-SNAPSHOT.jar"]
